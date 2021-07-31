@@ -10,12 +10,12 @@ contract LmnTokenProxy {
   }
 
   function killUpgrade() external ifAdmin {
-    require(!isUpgradeable, "LmnToken: Kill switch is already activated.");
-    killUpgrade();
+    require(!isUpgradeable, "LmnToken: Kill switch feature is already deactivated.");
+    isUpgradeable = false;
   }
 
   function _upgradeTo(address newImplementation) internal override(UpgradeableProxy) {
-    require(isUpgradeable, "Upgrade feature is disabled.");
+    require(isUpgradeable, "LmnToken: Upgrade feature is disabled.");
     UpgradeableProxy._upgradeTo(newImplementation);
   }
 
