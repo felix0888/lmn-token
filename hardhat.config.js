@@ -17,8 +17,5 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.6.7",
-  gasReporter: {
-    enabled: true
-  }
+  solidity: "0.8.4",
 };
