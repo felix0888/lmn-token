@@ -10,8 +10,8 @@ contract LmnTokenImplementation is Initializable, ERC20Upgradeable, OwnableUpgra
 
   uint256 public price;
 
-  function initialize(string memory _name, string memory _symbol) external initializer {
-    __ERC20_init((_name), symbol_);
+  function initialize(string calldata _name, string calldata _symbol) external initializer {
+    __ERC20_init((_name), _symbol);
     __Ownable_init();
     price = 1;
   }
@@ -23,14 +23,14 @@ contract LmnTokenImplementation is Initializable, ERC20Upgradeable, OwnableUpgra
 
   function mint() external payable {
     require(msg.value > 0, "LmnToken: Not enough ETH to mint.");
-    _mint(msg.sender, amount.mul(msg.value));
+    _mint(msg.sender, price.mul(msg.value));
   }
 
   function burn(uint256 amount) external {
     require(amount > 0, "LmnToken: Not enough token amount to burn.");
-    require(balanceOf(msg.sender), "LmnToken: Not enough balance.");
+    require(balanceOf(msg.sender) > 0, "LmnToken: Not enough balance.");
     _burn(msg.sender, amount);
-    uint256 ethAmount = amount.mul(95).div(price).div(100);
+    uint256 ethAmount = amount.mul(90).div(100).div(price);
     payable(msg.sender).transfer(ethAmount);
   }
 
