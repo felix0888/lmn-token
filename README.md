@@ -30,7 +30,23 @@ You may use http://faucet.[NAME].network to get some ETH.
 
 ```npx hardhat node```
 
-## Test!💥
+## Deploy Contracts
+
+### Configure the .env file
+
+- PRIVATE_KEY : The private key of EOA with which to deploy the contracts.
+- PROXY_ADMIN_ADDRESS: The proxy admin address, has to different with the one of the PRIVATE_KEY.
+- INFURA_API_KEY: The API key of the INFURA project.
+- ETHERSCAN_API_KEY: The API key of the ETHERSCAN project.
+
+### Deploy and Verify
+
+```npx hardhat deploy --network <network> --tags AcalaToken_deploy```
+```npx hardhat deploy --network <network> --tags AcalaToken_deploy_verify```
+
+### Configure proxy contract on Etherscan
+
+## Test
 
 ### Run Tests
 
